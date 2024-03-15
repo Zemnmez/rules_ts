@@ -10,6 +10,8 @@ resource_set_values = [
     "mem_2g",
     "mem_4g",
     "mem_8g",
+    "mem_16g",
+    "mem_32g",
 ]
 
 def _resource_set_mem_512m(_, __):
@@ -27,6 +29,12 @@ def _resource_set_mem_4g(_, __):
 def _resource_set_mem_8g(_, __):
     return { "memory": 8192 }
 
+def _resource_set_mem_16g(_, __):
+    return { "memory": 16384 }
+
+def _resource_set_mem_32g(_, __):
+    return { "memory": 32768 }
+
 # buildifier: disable=function-docstring
 def resource_set(name):
     if name == "default":
@@ -41,6 +49,10 @@ def resource_set(name):
         return _resource_set_mem_4g
     if name == "mem_8g":
         return _resource_set_mem_8g
+    if name == "mem_16g":
+        return _resource_set_mem_16g
+    if name == "mem_32g":
+        return _resource_set_mem_32g
     fail("unknown resource set", name)
 
 # Attributes common to all TypeScript rules
